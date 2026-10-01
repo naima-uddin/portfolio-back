@@ -117,7 +117,7 @@ router.put(
     const doc = await ProjectModel.findOneAndUpdate(
       { id },
       { ...body, id: body.id?.trim() || id },
-      { new: true, upsert: true, setDefaultsOnInsert: true }
+      { returnDocument: "after", upsert: true, setDefaultsOnInsert: true }
     ).lean();
     res.json({ project: toProject(doc) });
   })

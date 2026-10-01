@@ -53,6 +53,6 @@ export async function saveSiteContent(
   await SiteContentModel.findOneAndUpdate(
     { key: SITE_CONTENT_KEY },
     { key: SITE_CONTENT_KEY, data },
-    { new: true, upsert: true, setDefaultsOnInsert: true }
+    { returnDocument: "after", upsert: true, setDefaultsOnInsert: true }
   );
 }
