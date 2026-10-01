@@ -15,7 +15,7 @@ export const env = {
   // Allowed frontend origins for CORS (comma-separated).
   corsOrigins: (process.env.CORS_ORIGIN ?? "http://localhost:3000")
     .split(",")
-    .map((o) => o.trim())
+    .map((o) => o.trim().replace(/\/+$/, ""))
     .filter(Boolean),
 
   adminEmail: process.env.ADMIN_EMAIL,
