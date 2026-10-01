@@ -8,6 +8,11 @@ const ProjectSchema = new Schema(
     liveUrl: { type: String, default: "#" },
     githubUrl: { type: String, default: "" },
     image: { type: String },
+    gallery: { type: [String], default: [] },
+    repoLinks: {
+      type: [{ _id: false, label: String, url: String }],
+      default: [],
+    },
     description: { type: String, default: "" },
     shortDesc: { type: String, default: "" },
     keyFeatures: { type: [String], default: [] },

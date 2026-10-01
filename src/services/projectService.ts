@@ -20,6 +20,10 @@ export function toProject(doc: any): Project {
     liveUrl: doc.liveUrl ?? "#",
     githubUrl: doc.githubUrl || undefined,
     image: doc.image || undefined,
+    gallery: doc.gallery?.length ? doc.gallery : undefined,
+    repoLinks: doc.repoLinks?.length
+      ? doc.repoLinks.map((r: any) => ({ label: r.label, url: r.url }))
+      : undefined,
     description: doc.description ?? "",
     shortDesc: doc.shortDesc ?? "",
     keyFeatures: doc.keyFeatures ?? [],
@@ -56,7 +60,7 @@ export async function getProjects(): Promise<ProjectsResult> {
 
   try {
     await connectDB();
-    const docs = await ProjectModel.find().sort({ createdAt: 1 }).lean();
+    const docs = await ProjectModel.find().sort({ createdAt: -1 }).lean();
     if (docs.length === 0) {
       return {
         projects: fallbackProjects,
