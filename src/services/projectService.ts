@@ -18,6 +18,7 @@ export function toProject(doc: any): Project {
     title: doc.title,
     color: doc.color ?? "#34d399",
     liveUrl: doc.liveUrl ?? "#",
+    githubUrl: doc.githubUrl || undefined,
     image: doc.image || undefined,
     description: doc.description ?? "",
     shortDesc: doc.shortDesc ?? "",

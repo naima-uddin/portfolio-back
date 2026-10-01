@@ -6,6 +6,7 @@ const ProjectSchema = new Schema(
     title: { type: String, required: true, trim: true },
     color: { type: String, default: "#34d399" },
     liveUrl: { type: String, default: "#" },
+    githubUrl: { type: String, default: "" },
     image: { type: String },
     description: { type: String, default: "" },
     shortDesc: { type: String, default: "" },

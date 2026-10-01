@@ -16,6 +16,7 @@ export interface Project {
   title: string;
   color: string;
   liveUrl: string;
+  githubUrl?: string;
   clientUrl?: string;
   serverUrl?: string;
   image?: string;
