@@ -12,7 +12,7 @@ export const EXT: Record<string, string> = {
 };
 
 // Signed upload to Cloudinary via its REST API (no SDK needed). Returns the
-// delivery URL. `auto` handles both images and PDFs/raw files.
+// delivery URL.
 export async function uploadToCloudinary(
   buffer: Buffer,
   mimeType: string,
@@ -39,8 +39,12 @@ export async function uploadToCloudinary(
   form.append("folder", folder);
   form.append("signature", signature);
 
+  // PDFs go up as "raw": Cloudinary blocks PDF delivery from the "image"
+  // resource type by default (401 "deny or ACL failure").
+  const resourceType = mimeType === "application/pdf" ? "raw" : "auto";
+
   const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${cloud}/auto/upload`,
+    `https://api.cloudinary.com/v1_1/${cloud}/${resourceType}/upload`,
     { method: "POST", body: form }
   );
   const body: any = await res.json().catch(() => ({}));
